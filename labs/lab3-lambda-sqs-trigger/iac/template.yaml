@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  FunctionName: {Type: String}
+Resources:
+  TriggerQueue:
+    Type: 'AWS::SQS::Queue'
+    Properties: {QueueName: LambdaTriggerQueue}
+  SqsEventMapping:
+    Type: 'AWS::Lambda::EventSourceMapping'
+    Properties:
+      EventSourceArn: !GetAtt TriggerQueue.Arn
+      FunctionName: !Ref FunctionName
+      BatchSize: 5

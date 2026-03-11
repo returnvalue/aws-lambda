@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  ProdAlias:
+    Type: 'AWS::Lambda::Alias'
+    Properties:
+      FunctionName: !Ref ServerlessProcessor
+      FunctionVersion: !GetAtt ServerlessProcessorVersion.Version
+      Name: PROD
+  ServerlessProcessorVersion:
+    Type: 'AWS::Lambda::Version'
+    Properties:
+      FunctionName: !Ref ServerlessProcessor
+  ServerlessProcessor:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      # ... other props
+      ReservedConcurrentExecutions: 10

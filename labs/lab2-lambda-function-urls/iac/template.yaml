@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  FunctionName: {Type: String}
+Resources:
+  SyncUrl:
+    Type: 'AWS::Lambda::Url'
+    Properties:
+      TargetFunctionArn: !Sub 'arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${FunctionName}'
+      AuthType: NONE
+  AllowPublicPermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      Action: 'lambda:InvokeFunctionUrl'
+      FunctionName: !Ref FunctionName
+      Principal: '*'
+      FunctionUrlAuthType: NONE

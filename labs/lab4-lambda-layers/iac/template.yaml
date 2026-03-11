@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  LoggerLayer:
+    Type: 'AWS::Lambda::LayerVersion'
+    Properties:
+      LayerName: CustomLoggerLayer
+      CompatibleRuntimes: [python3.9]
+      Content:
+        S3Bucket: cicd-artifact-store # Placeholder
+        S3Key: layer.zip
