@@ -8,6 +8,7 @@ This repository contains hands-on labs demonstrating core Amazon Lambda concepts
 ## 🎯 Architecture Goals & Use Cases Covered
 Based on AWS best practices (SAA-C03), these labs cover:
 * **Function Provisioning:** Deploying serverless compute with specific runtimes and execution roles.
+* **Synchronous Web Access:** Exposing functions via built-in Lambda Function URLs.
 * **IAM Execution Roles:** Implementing the principle of least privilege for Lambda functions.
 * **Event Triggers:** (Upcoming) Decoupling systems using S3, SQS, and SNS triggers.
 * **API Integration:** (Upcoming) Fronting functions with Amazon API Gateway.
@@ -39,3 +40,4 @@ Based on AWS best practices (SAA-C03), these labs cover:
 
 ## 📚 Labs Index
 1. [Lab 1: Foundational Lambda Provisioning](./labs/lab1-lambda-provisioning/README.md)
+2. [Lab 2: Synchronous Web Access (Function URLs)](./labs/lab2-lambda-function-urls/README.md)
