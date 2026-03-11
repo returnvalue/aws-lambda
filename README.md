@@ -9,8 +9,9 @@ This repository contains hands-on labs demonstrating core Amazon Lambda concepts
 Based on AWS best practices (SAA-C03), these labs cover:
 * **Function Provisioning:** Deploying serverless compute with specific runtimes and execution roles.
 * **Synchronous Web Access:** Exposing functions via built-in Lambda Function URLs.
+* **Asynchronous Polling:** Decoupling systems with SQS Event Source Mappings.
 * **IAM Execution Roles:** Implementing the principle of least privilege for Lambda functions.
-* **Event Triggers:** (Upcoming) Decoupling systems using S3, SQS, and SNS triggers.
+* **Event Triggers:** (Upcoming) Decoupling systems using S3 and SNS triggers.
 * **API Integration:** (Upcoming) Fronting functions with Amazon API Gateway.
 * **Serverless Resilience:** (Upcoming) Configuring DLQs and destination policies.
 * **Scalability:** (Upcoming) Understanding concurrency and environment variables.
@@ -36,8 +37,9 @@ Based on AWS best practices (SAA-C03), these labs cover:
 > [!IMPORTANT]
 > **Cumulative Architecture:** These labs are designed as a cumulative scenario. You are building an evolving serverless infrastructure.
 >
-> **Session Persistence:** These labs rely on bash variables (like `$ROLE_ARN`). Run all commands in the same terminal session to maintain context.
+> **Session Persistence:** These labs rely on bash variables (like `$ROLE_ARN`, `$QUEUE_URL`). Run all commands in the same terminal session to maintain context.
 
 ## 📚 Labs Index
 1. [Lab 1: Foundational Lambda Provisioning](./labs/lab1-lambda-provisioning/README.md)
 2. [Lab 2: Synchronous Web Access (Function URLs)](./labs/lab2-lambda-function-urls/README.md)
+3. [Lab 3: Asynchronous Polling (SQS Event Source Mapping)](./labs/lab3-lambda-sqs-trigger/README.md)
