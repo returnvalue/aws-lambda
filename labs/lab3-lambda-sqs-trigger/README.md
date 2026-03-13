@@ -16,7 +16,7 @@ awslocal lambda create-event-source-mapping \
 # 3. Send a message to the queue to asynchronously trigger the Lambda
 awslocal sqs send-message \
   --queue-url $QUEUE_URL \
-  --message-body "Process this asynchronous payload!"
+  --message-body 'Process this asynchronous payload!'
 ```
 
 ## 🧠 Key Concepts & Importance
