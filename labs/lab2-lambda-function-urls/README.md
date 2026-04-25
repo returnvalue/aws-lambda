@@ -8,9 +8,19 @@ FUNC_URL=$(awslocal lambda create-function-url-config \
   --function-name ServerlessProcessor \
   --auth-type NONE \
   --query 'FunctionUrl' --output text)
+FUNC_URL=$(aws lambda create-function-url-config \
+  --function-name ServerlessProcessor \
+  --auth-type NONE \
+  --query 'FunctionUrl' --output text)
 
 # 2. Grant public access to invoke the URL
 awslocal lambda add-permission \
+  --function-name ServerlessProcessor \
+  --action lambda:InvokeFunctionUrl \
+  --statement-id FunctionURLAllowPublicAccess \
+  --principal "*" \
+  --function-url-auth-type NONE
+aws lambda add-permission \
   --function-name ServerlessProcessor \
   --action lambda:InvokeFunctionUrl \
   --statement-id FunctionURLAllowPublicAccess \
@@ -49,3 +59,45 @@ curl -H "Host: $HOST_NAME" http://localhost:4566/
     - `--statement-id`: A unique identifier for the policy statement.
     - `--principal`: The entity granted permission (e.g., `*` for public).
     - `--function-url-auth-type`: Must match the auth type of the URL config.
+
+---
+
+💡 **Pro Tip: Using `aws` instead of `awslocal`**
+
+If you prefer using the standard `aws` CLI without the `awslocal` wrapper or repeating the `--endpoint-url` flag, you can configure a dedicated profile in your AWS config files.
+
+### 1. Configure your Profile
+Add the following to your `~/.aws/config` file:
+```ini
+[profile localstack]
+region = us-east-1
+output = json
+# This line redirects all commands for this profile to LocalStack
+endpoint_url = http://localhost:4566
+```
+
+Add matching dummy credentials to your `~/.aws/credentials` file:
+```ini
+[localstack]
+aws_access_key_id = test
+aws_secret_access_key = test
+```
+
+### 2. Use it in your Terminal
+You can now run commands in two ways:
+
+**Option A: Pass the profile flag**
+```bash
+aws iam create-user --user-name DevUser --profile localstack
+```
+
+**Option B: Set an environment variable (Recommended)**
+Set your profile once in your session, and all subsequent `aws` commands will automatically target LocalStack:
+```bash
+export AWS_PROFILE=localstack
+aws iam create-user --user-name DevUser
+```
+
+### Why this works
+- **Precedence**: The AWS CLI (v2) supports a global `endpoint_url` setting within a profile. When this is set, the CLI automatically redirects all API calls for that profile to your local container instead of the real AWS cloud.
+- **Convenience**: This allows you to use the standard documentation commands exactly as written, which is helpful if you are copy-pasting examples from AWS labs or tutorials.
