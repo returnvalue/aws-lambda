@@ -1,7 +1,6 @@
 # Lab 3: Asynchronous Polling (SQS Event Source Mapping)
 
 **Goal:** Decouple your system. Send messages to an SQS queue and have the Lambda function automatically poll and process them in batches.
-
 ```bash
 # 1. Create the SQS Queue
 QUEUE_URL=$(awslocal sqs create-queue --queue-name LambdaTriggerQueue --query 'QueueUrl' --output text)

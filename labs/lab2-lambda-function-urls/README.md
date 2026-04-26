@@ -1,7 +1,6 @@
 # Lab 2: Synchronous Web Access (Function URLs)
 
 **Goal:** Instead of setting up a complex API Gateway, use Lambda Function URLs to quickly expose a synchronous HTTP endpoint for web clients. Because LocalStack generates custom subdomains that your local DNS might not recognize, we will use an HTTP Host header trick to route the request successfully.
-
 ```bash
 # 1. Create a Function URL configuration (No auth for testing)
 FUNC_URL=$(awslocal lambda create-function-url-config \

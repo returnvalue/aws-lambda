@@ -1,7 +1,6 @@
 # Lab 1: Foundational Lambda Provisioning
 
 **Goal:** Create an IAM Execution Role (Trust Policy) and deploy a simple Python Lambda function using a zipped deployment package.
-
 ```bash
 # 1. Create a Trust Policy allowing Lambda to assume the role
 cat <<EOF > trust-policy.json

@@ -1,7 +1,6 @@
 # Lab 4: Code Reusability (Lambda Layers)
 
 **Goal:** Move shared libraries or custom logic out of the deployment package and into a Lambda Layer, allowing multiple functions to use the same code.
-
 ```bash
 # 1. Create a dummy Python library folder structure (Required for Layers)
 mkdir -p python

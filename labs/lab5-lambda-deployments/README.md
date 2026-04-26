@@ -1,7 +1,6 @@
 # Lab 5: Safe Deployments (Versions, Aliases & Concurrency)
 
 **Goal:** Publish an immutable version of the function, point a PROD alias to it, and apply Reserved Concurrency to guarantee the function can always scale up to handle critical requests.
-
 ```bash
 # 1. Publish an immutable Version of the current function state
 VERSION=$(awslocal lambda publish-version \
